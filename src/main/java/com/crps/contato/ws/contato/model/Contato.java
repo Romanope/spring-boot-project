@@ -6,6 +6,7 @@ import com.crps.contato.ws.operadora.model.Operadora;
 
 public class Contato {
 	
+	private String serial;
 	private String nome;
 	private String telefone;
 	private Operadora operadora;
@@ -34,5 +35,11 @@ public class Contato {
 	}
 	public void setData(Date data) {
 		this.data = data;
+	}
+	public String getSerial() {
+		return serial;
+	}
+	public void setSerial(String serial) {
+		this.serial = serial;
 	}
 }

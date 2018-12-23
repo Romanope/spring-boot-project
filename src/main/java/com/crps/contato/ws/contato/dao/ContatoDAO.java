@@ -20,21 +20,21 @@ public class ContatoDAO {
 		contatos = new HashMap<>();
 		
 		Contato contato = new Contato();
-		contato.setNome("Maria da Silva");
+		contato.setNome("maria da silva");
 		contato.setTelefone("3333-3333");
 		contato.setOperadora(Operadora.TIM);
 		contato.setData(Calendar.getInstance().getTime());
 		contatos.put(contato.getTelefone(), contato);
 
 		contato = new Contato();
-		contato.setNome("João da Silva");
+		contato.setNome("joão da silva");
 		contato.setTelefone("2222-2222");
 		contato.setOperadora(Operadora.CLARO);
 		contato.setData(Calendar.getInstance().getTime());
 		contatos.put(contato.getTelefone(), contato);
 
 		contato = new Contato();
-		contato.setNome("Rosa Maria");
+		contato.setNome("rosa maria");
 		contato.setTelefone("1111-1111");
 		contato.setOperadora(Operadora.EMBRATEL);
 		contato.setData(Calendar.getInstance().getTime());

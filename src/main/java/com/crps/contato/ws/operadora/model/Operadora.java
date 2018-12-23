@@ -11,6 +11,10 @@ public class Operadora {
 	private String categoria;
 	private double preco;
 	
+	public Operadora() {
+		super();
+	}
+
 	public Operadora(String nome, String codigo, String categoria, double preco) {
 		super();
 		this.nome = nome;
@@ -41,5 +45,9 @@ public class Operadora {
 	}
 	public void setPreco(double preco) {
 		this.preco = preco;
+	}
+	
+	public Operadora valueOf(String codido) {
+		return TIM;
 	}
 }

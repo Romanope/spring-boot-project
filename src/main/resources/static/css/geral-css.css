@@ -1,0 +1,22 @@
+@charset "ISO-8859-1";
+.jumbotron {
+	width: 800px;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+	background-color: 99FF99;
+}
+
+.table {
+	margin-top: 20px;
+}
+
+.form-control {
+	margin-bottom: 5px;
+}
+
+.selecionado {
+	font-weight: bold;
+	background-color: red;
+}
