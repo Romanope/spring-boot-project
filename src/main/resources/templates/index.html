@@ -14,11 +14,15 @@
 		<script type="text/javascript" src="js/config/serialGeneratorConfig.js"></script>
 		<script type="text/javascript" src="js/filters/nameFilter.js"></script>
 		<script type="text/javascript" src="js/filters/ellipsisFilter.js"></script>
+		<script type="text/javascript" src="js/directives/uiAlertDirective.js"></script>
+		<script type="text/javascript" src="js/directives/comboOperadorasDirective.js"></script>
 		
 		<title>Lista Telefônica</title>
 	</head>
 	<body ng-controller="listaTelefonicaController">
 		<div class="jumbotron">
+			<ui-alert title="Ops, ocorreu um erro" msg="error" ng-if="error"></ui-alert>
+		
 			<h4 ng-bind="app"></h4>
 			<input class="form-control" type="text" ng-model="criterioDeBusca" placeholder="O que você está buscando?">
 			<table class="table table-striped">
@@ -45,9 +49,8 @@
 			<form name="contatoForm">
 				<input placeholder="Nome" class="form-control" type="text" name="nome" ng-model="contato.nome" ng-required="true">
 				<input placeholder="Telefone" ng-pattern="/^\d{4,5}-\d{4}$/" class="form-control" type="text" name="telefone" ng-model="contato.telefone" ng-required="true">
-				<select class="form-control" ng-model="contato.operadora" ng-options="operadora as operadora.codigo +'-' + operadora.nome for operadora in operadoras">
-					<option selected value="">Selecione uma operadora</option>
-				</select>
+				<input type="text" placeholder="Data de Nascimento" class="form-control" ng-model="contato.data" ng-required="true" name="data" ng-change="atualizarListaOperadoras()"/>
+				<combo-operadoras operadora="contato.operadora" operadoras="operadoras"></combo-operadoras>
 			</form>
 			<div class="alert alert-danger" ng-show="contatoForm.nome.$invalid && contatoForm.nome.$dirty">
 				Por favor, preencher o campo nome.
@@ -57,6 +60,9 @@
 			</div>
 			<div class="alert alert-danger" ng-show="contatoForm.telefone.$error.pattern">
 				Telefone inválido.
+			</div>
+			<div class="alert alert-danger" ng-show="contatoForm.data.$error.pattern">
+				Data de nascimento inválida!
 			</div>
 			<button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="contatoForm.$invalid">Adicionar</button>
 			<button class="btn btn-danger btn-block" ng-click="removerContato(contatos)" ng-if="isContatoSelecionado(contatos)">Remover</button>

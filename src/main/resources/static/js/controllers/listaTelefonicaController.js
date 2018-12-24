@@ -8,7 +8,9 @@ angular.module("listaTelefonica").controller("listaTelefonicaController", functi
 		var carregarContatos = function () {
 			contatosAPI.getContatos().then(function (response) {
 				$scope.contatos = response.data;
-			}).catch(angular.noop);
+			}, function (response) {
+				$scope.error = "Erro ao carregar lista de contatos.";
+			});
 		};
 
 		var carregarOperadoras = function () {
@@ -18,13 +20,13 @@ angular.module("listaTelefonica").controller("listaTelefonicaController", functi
 		};
 		
 		$scope.adicionarContato = function (contato) {
-			contato.data = new Date();
 			contato.serial = serialGenerator.generate();
 			contatosAPI.cadastrar(contato).then(function (response) {
 				delete $scope.contato;
 				$scope.contatoForm.$setPristine();
 				carregarContatos();
-				
+			}, function (response) {
+				$scope.error = "Erro ao cadastrar contato. " + response.data 
 			});
 		};
 
@@ -55,6 +57,20 @@ angular.module("listaTelefonica").controller("listaTelefonicaController", functi
 					$scope.contato.telefone = contatos[i].telefone;
 					break;
 				}
+			}
+		};
+		
+		var isDataValida = function (data) {
+			if (!data) return false;
+			var dataArray = data.split("/");
+			if (dataArray.length !== 3) return false;
+			return dataArray[0].length == 2 && dataArray[1].length == 2 && dataArray[2].length == 4;
+			
+		}
+		
+		$scope.atualizarListaOperadoras = function () {
+			if (isDataValida($scope.contato.data)) {
+				carregarOperadoras();
 			}
 		};
 

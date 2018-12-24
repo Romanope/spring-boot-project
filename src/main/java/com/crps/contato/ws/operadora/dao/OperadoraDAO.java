@@ -13,6 +13,7 @@ import com.crps.contato.ws.operadora.model.Operadora;
 public class OperadoraDAO {
 
 	private static Map<String, Operadora> operadoras;
+	private List<Operadora> ultimaListaRetornada = new ArrayList<>();
 	
 	static {
 		operadoras = new HashMap<>();
@@ -23,7 +24,8 @@ public class OperadoraDAO {
 	
 	public List<Operadora> buscarOperadoras () {
 		
-		return new ArrayList<>(operadoras.values());
+		ultimaListaRetornada.addAll(operadoras.values());
+		return ultimaListaRetornada;
 	}
 	
 	public Operadora buscarOperadora (String codigo) {
